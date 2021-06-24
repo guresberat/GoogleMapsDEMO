@@ -1,6 +1,5 @@
 package com.example.mygooglemapsexercise
 
-import android.R
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.os.Bundle
@@ -41,8 +40,8 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
 
         val height = 100
         val width = 100
-        val b = BitmapFactory.decodeResource(resources, R.drawable.rocketicon)
-        val smallMarker = Bitmap.createScaledBitmap(b, width, height, false)
+        val b = BitmapFactory.decodeResource(resources, R.drawable.icon)
+        val smallMarker = Bitmap.createScaledBitmap(b, width, height, true)
         val smallMarkerIcon = BitmapDescriptorFactory.fromBitmap(smallMarker)
 
         buttonSend.setOnClickListener {
@@ -50,7 +49,8 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
             val longitude = editTextLongitude.text.toString()
             val location = LatLng(latitude.toDouble(), longitude.toDouble())
             mMap.addMarker(
-                MarkerOptions().position(location).title("You are here.").icon(BitmapDescriptorFactory.fromResource(R.drawable.smallMarkerIcon))
+                MarkerOptions().position(location).title("You are here.")
+                    .icon(smallMarkerIcon)
             )
             mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(location, 15f))
             mMap.mapType = GoogleMap.MAP_TYPE_SATELLITE
